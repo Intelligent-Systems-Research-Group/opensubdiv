@@ -71,6 +71,7 @@ public:
     ///                limit surface is tagged as a hole at the given location
     ///
     Handle const * FindPatch( int faceid, float u, float v ) const;
+    std::vector<Handle>   _handles;  // all the patches in the PatchTable
 
 private:
 
@@ -115,7 +116,6 @@ private:
     //
     template <class T> static int resolveQuadrant(T & median, T & u, T & v);
 
-    std::vector<Handle>   _handles;  // all the patches in the PatchTable
     std::vector<QuadNode> _quadtree; // quadtree nodes
 };
 
