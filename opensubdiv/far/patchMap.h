@@ -31,6 +31,15 @@
 
 #include <cassert>
 
+
+#include <execinfo.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* Obtain a backtrace and print it to stdout. */
+void
+print_trace2 (void);
+
 namespace OpenSubdiv {
 namespace OPENSUBDIV_VERSION {
 
@@ -150,7 +159,9 @@ PatchMap::FindPatch( int faceid, float u, float v ) const {
 
     if (faceid>=(int)_quadtree.size())
         return NULL;
-
+    if(!(u>=0.0f) && (u<=1.0f) && (v>=0.0f) && (v<=1.0f)) {
+	print_trace2();
+    }
     assert( (u>=0.0f) && (u<=1.0f) && (v>=0.0f) && (v<=1.0f) );
 
     QuadNode const * node = &_quadtree[faceid];

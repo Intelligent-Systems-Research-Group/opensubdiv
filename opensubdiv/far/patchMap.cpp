@@ -26,6 +26,27 @@
 
 #include <algorithm>
 
+
+void
+print_trace2 (void)
+{
+  void *array[50];
+  size_t size;
+  char **strings;
+  size_t i;
+
+  size = backtrace (array, 50);
+  strings = backtrace_symbols (array, size);
+
+  fprintf (stderr,"Obtained %zd stack frames.\n", size);
+
+  for (i = 0; i < size; i++)
+     fprintf (stderr,"%s\n", strings[i]);
+
+  free (strings);
+}
+
+
 namespace OpenSubdiv {
 namespace OPENSUBDIV_VERSION {
 
